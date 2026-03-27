@@ -1,0 +1,43 @@
+/* === QR CARD & MEME CARD === */
+
+
+.meme-card {
+    width: 220px;
+    height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.meme-card:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.pepe-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 950px) {
+    .meme-card {
+        width: 100%;
+        height: auto;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    .meme-card {
+        height: 250px;
+    }
+}

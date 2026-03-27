@@ -1,0 +1,495 @@
+/* 
+    8. GAMES LIBRARY
+    Grid layout & Twitch-style Modal (Mobile Optimized)
+*/
+
+/* === СЕТКА ИГР (ОСНОВНАЯ СТРАНИЦА) === */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.game-card {
+    background: rgba(15, 15, 18, 0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+}
+
+.game-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.game-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 197, 0, 0.5);
+    box-shadow: 0 15px 35px rgba(255, 197, 0, 0.15), inset 0 0 20px rgba(255, 197, 0, 0.05);
+    z-index: 5;
+}
+
+.game-card:hover::after {
+    left: 150%;
+}
+
+.game-card.hidden-game { display: none; }
+
+.game-cover {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.game-card:hover .game-cover { 
+    filter: brightness(1.15) contrast(1.05); 
+    transform: scale(1.05);
+}
+
+.game-info {
+    padding: 15px;
+    background: rgba(15, 15, 18, 0.8);
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 3;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.game-card:hover .game-info {
+    background: rgba(20, 20, 24, 0.9);
+    border-top-color: rgba(255, 197, 0, 0.2);
+}
+
+.game-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: color 0.3s ease;
+}
+
+.game-card:hover .game-title {
+    color: #ffc500;
+}
+
+.game-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex; align-items: center; gap: 6px;
+}
+.game-meta i { 
+    color: #ffc500; 
+    filter: drop-shadow(0 0 5px rgba(255, 197, 0, 0.5));
+}
+
+/* === КНОПКА "ПОКАЗАТЬ ВСЕ ИГРЫ" === */
+.gm-footer-controls {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 10px 0;
+}
+
+.toggle-clips-btn {
+    background: rgba(255, 197, 0, 0.05);
+    border: 1px solid rgba(255, 197, 0, 0.3);
+    color: #ffc500;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex; align-items: center; gap: 10px;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+}
+
+.toggle-clips-btn:hover {
+    background: linear-gradient(135deg, #ffc500, #ff9500);
+    color: #000;
+    border-color: #ffc500;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 197, 0, 0.4);
+}
+.toggle-clips-btn i { font-size: 0.9rem; transition: transform 0.3s; }
+.toggle-clips-btn.expanded i { transform: rotate(180deg); }
+
+
+/* === МОДАЛЬНОЕ ОКНО (PREMIUM CYBER-GOLD) === */
+.game-modal-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(5, 5, 8, 0.85); /* Deep dark background */
+    backdrop-filter: blur(15px); /* Strong blur */
+    z-index: 20000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.game-modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+.game-modal-content {
+    width: 95%; max-width: 1600px;
+    height: 90vh;
+    background: rgba(15, 15, 18, 0.95);
+    border: 1px solid rgba(255, 197, 0, 0.2);
+    border-radius: 20px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 30px rgba(255, 197, 0, 0.05);
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.game-modal-overlay.open .game-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.gm-header {
+    padding: 18px 30px;
+    background: linear-gradient(90deg, rgba(20, 20, 24, 0.9), rgba(255, 197, 0, 0.05), rgba(20, 20, 24, 0.9));
+    border-bottom: 1px solid rgba(255, 197, 0, 0.15);
+    color: #fff;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10;
+}
+
+.gm-title { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem; 
+    font-weight: 900;
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #ffffff, #ffc500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 197, 0, 0.1);
+}
+
+.gm-close {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem; cursor: pointer; color: #fff;
+    transition: all 0.3s ease;
+}
+.gm-close:hover { 
+    background: rgba(255, 197, 0, 0.2);
+    border-color: #ffc500;
+    color: #ffc500;
+    transform: rotate(90deg);
+    box-shadow: 0 0 15px rgba(255, 197, 0, 0.3);
+}
+
+/* === ТЕЛО МОДАЛКИ === */
+.gm-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* --- ЛЕВАЯ КОЛОНКА (Плеер) --- */
+.gm-left-col {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 10, 12, 0.6);
+    overflow-y: auto;
+}
+
+.player-wrapper {
+    width: 100%;
+    background: #000;
+    position: relative;
+    padding-top: 56.25%; /* 16:9 */
+    flex-shrink: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.master-iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+}
+
+.player-controls-panel {
+    padding: 25px 30px;
+    flex-grow: 1;
+}
+
+.controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.controls-title { 
+    font-size: 1.3rem; 
+    font-weight: 800; 
+    color: #fff; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sort-tabs { 
+    display: flex; 
+    background: rgba(255, 255, 255, 0.03); 
+    border-radius: 8px; 
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sort-btn {
+    background: transparent; border: none; color: rgba(255,255,255,0.5);
+    font-weight: 700; font-size: 0.85rem; cursor: pointer;
+    padding: 8px 16px; 
+    border-radius: 6px;
+    transition: all 0.3s ease; 
+    font-family: 'Montserrat', sans-serif;
+}
+.sort-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+.sort-btn.active { 
+    color: #000; 
+    background: #ffc500; 
+    box-shadow: 0 0 10px rgba(255, 197, 0, 0.4);
+}
+
+.clip-meta-info { 
+    color: rgba(255,255,255,0.6); 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+}
+.clip-meta-info strong { color: #ffc500; }
+
+/* --- ПРАВАЯ КОЛОНКА (Сетка клипов) --- */
+.gm-right-col {
+    flex: 2;
+    min-width: 450px;
+    background: rgba(5, 5, 8, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-header {
+    padding: 20px 25px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #ffc500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(to bottom, rgba(255, 197, 0, 0.05), transparent);
+}
+
+.playlist-scroll-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: max-content;
+    gap: 15px;
+    align-content: start;
+    -webkit-overflow-scrolling: touch; 
+}
+
+/* Карточка клипа в сетке */
+.playlist-item {
+    display: flex;
+    flex-direction: column;
+    background: rgba(25, 25, 30, 0.6);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    height: auto;
+    min-height: 100px;
+}
+
+.playlist-item::before {
+    content: '';
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 197, 0, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.playlist-item:hover {
+    transform: translateY(-4px);
+    background: rgba(35, 35, 42, 0.8);
+    border-color: rgba(255, 197, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 10px rgba(255, 197, 0, 0.05);
+    z-index: 2;
+}
+.playlist-item:hover::before { opacity: 1; }
+
+.playlist-item.active-clip {
+    border-color: #ffc500;
+    background: rgba(255, 197, 0, 0.08);
+    box-shadow: 0 0 20px rgba(255, 197, 0, 0.15), inset 0 0 15px rgba(255, 197, 0, 0.1);
+}
+
+.pl-thumb-mini {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-color: #000;
+}
+.pl-thumb-mini::after {
+    content: '';
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+}
+
+.pl-views-badge {
+    position: absolute;
+    bottom: 8px; left: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffc500;
+    z-index: 2;
+    display: flex; align-items: center; gap: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 6px;
+    border-radius: 4px;
+    backdrop-filter: blur(2px);
+}
+
+.pl-info-mini {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.pl-title-mini {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.pl-meta-mini {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+}
+
+/* Скроллбары */
+.gm-left-col::-webkit-scrollbar,
+.playlist-scroll-area::-webkit-scrollbar { width: 6px; }
+.gm-left-col::-webkit-scrollbar-track,
+.playlist-scroll-area::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+.gm-left-col::-webkit-scrollbar-thumb,
+.playlist-scroll-area::-webkit-scrollbar-thumb { background: #ffc500; border-radius: 3px; }
+
+/* === АДАПТИВ (MOBILE) === */
+@media (max-width: 900px) {
+    .game-modal-content {
+        height: 100vh;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+    }
+
+    .gm-body { 
+        flex-direction: column; 
+    }
+
+    .gm-left-col { 
+        flex: none; 
+        border-right: none; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        max-height: 50vh; 
+        overflow-y: auto;
+    }
+
+    .gm-right-col { 
+        min-width: 100%; 
+        flex: 1; 
+        min-height: 0; 
+    }
+    
+    .playlist-scroll-area { 
+        grid-template-columns: repeat(2, 1fr); 
+        padding-bottom: 40px; 
+    }
+
+    .controls-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .sort-tabs {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    
+    .sort-btn {
+        flex: 1;
+        text-align: center;
+    }
+}

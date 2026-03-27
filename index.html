@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RONEER_ | Streamer Hub</title>
+    
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <meta name="description" content="Официальный хаб стримера RONEER_. Уютно и по-доброму 😉">
+    <meta name="theme-color" content="#ffc500"> <!-- Желтый цвет Ронира -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://embed.twitch.tv/embed/v1.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- СЛОИ ФОНА -->
+    <div class="bg-watermark">RONEER_</div>
+    <div class="bg-scanlines"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="ambient-glow"></div>
+
+    <!-- HUD CONTROLS -->
+    <div class="hud-controls">
+        <div id="music-toggle" class="hud-btn muted" title="Music On/Off">
+            <i class="fas fa-music"></i> <span>OST</span>
+        </div>
+        <div id="sfx-toggle" class="hud-btn" title="SFX On/Off">
+            <i class="fas fa-volume-up"></i> <span>SFX</span>
+        </div>
+    </div>
+
+    <!-- AUTH CONTROL -->
+    <div id="auth-wrapper" class="auth-container-fixed">
+        <button id="login-btn" class="auth-btn discord-login not-logged-in">
+            <i class="fab fa-discord"></i> <span>Войти</span>
+        </button>
+        
+        <div id="user-profile" class="user-profile-fixed" style="display: none;">
+            <div class="user-info-box">
+                <img id="user-avatar" src="" alt="User">
+                <span id="user-name">User</span>
+            </div>
+            <button id="logout-btn" class="logout-btn-fixed" title="Выйти">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-bg-scan"></div>
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <span class="pl-letter">R</span><span class="pl-letter">O</span><span class="pl-letter">N</span><span class="pl-letter">E</span><span class="pl-letter">E</span><span class="pl-letter">R</span><span class="pl-underscore">_</span>
+            </div>
+            <div class="preloader-tagline">STREAMER HUB</div>
+            <div class="preloader-bar-wrap">
+                <div class="preloader-bar-track">
+                    <div class="preloader-bar-fill" id="preloader-bar"></div>
+                </div>
+                <span class="preloader-percent" id="preloader-percent">0%</span>
+            </div>
+            <div class="preloader-status" id="preloader-status">ИНИЦИАЛИЗАЦИЯ...</div>
+        </div>
+    </div>
+
+
+    <main class="main-container">
+        
+        <!-- HERO HEADER -->
+        <header class="hero-header">
+
+            <!-- Пепе торчит сверху над карточкой -->
+            <div class="hero-avatar-wrap">
+                <div class="hero-avatar-glow"></div>
+                <div class="avatar-container">
+                    <img src="assets/pepe.png" alt="RONEER_" class="avatar-img">
+                </div>
+                <div id="click-counter-wrapper">
+                    <div class="click-badge">CLICKS: <span id="click-val">0</span></div>
+                    <button id="reset-clicks" class="reset-clicks-btn" title="Сбросить"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+
+            <!-- Стеклянная карточка инфо -->
+            <div class="hero-card">
+                <div class="hero-card-accent"></div>
+                <h1 class="premium-title">RONEER_</h1>
+                <p class="status-quote">«Зашёл?» Ну теперь придётся остаться... 😉</p>
+
+                <div class="hero-divider"></div>
+
+                <div class="hero-badges">
+                    <span class="hero-badge location-badge">
+                        <i class="fas fa-map-marker-alt"></i> Россия
+                    </span>
+                    <span id="stream-status" class="hero-badge stream-check">
+                        <i class="fas fa-circle"></i>
+                        <span class="status-text">Offline</span>
+                    </span>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- TWITCH EMBED -->
+        <div id="live-box" class="twitch-wrapper" style="display: none;">
+            <div class="live-indicator">
+                <i class="fas fa-satellite-dish"></i> В ЭФИРЕ
+            </div>
+            <div id="twitch-embed"></div>
+        </div>
+
+        <!-- SOCIAL LINKS -->
+        <section class="content-card tilt-effect">
+            <h2 class="section-title">Где меня найти</h2>
+            <nav class="social-links">
+                <a href="https://www.twitch.tv/roneer_" target="_blank" class="s-btn twitch">
+                    <i class="fab fa-twitch"></i> <span>Twitch</span>
+                </a>
+                <a href="https://t.me/RONEEEER" target="_blank" class="s-btn telegram">
+                    <i class="fab fa-telegram"></i> <span>Telegram</span>
+                </a>
+                <a href="https://www.youtube.com/@RONEER_" target="_blank" class="s-btn youtube">
+                    <i class="fab fa-youtube"></i> <span>YouTube</span>
+                </a>
+                <a href="https://www.tiktok.com/@roneer_" target="_blank" class="s-btn tiktok">
+                    <i class="fab fa-tiktok"></i> <span>TikTok</span>
+                </a>
+                <a href="https://instagram.com/rone.er_/" target="_blank" class="s-btn insta">
+                    <i class="fab fa-instagram"></i> <span>Instagram</span>
+                </a>
+            </nav>
+        </section>
+
+        <!-- SUPPORT & DONATIONS -->
+        <section class="content-card tilt-effect">
+            <h2 class="section-title">Пенсионный фонд</h2>
+            
+            <div class="alert-buttons">
+                <a href="https://www.donationalerts.com/r/ronner_" target="_blank" class="donate-btn da">
+                    <div class="btn-icon"><i class="fas fa-donate"></i></div>
+                    <div class="btn-text">
+                        <strong>DonationAlerts</strong>
+                        <small>Основной донат</small>
+                    </div>
+                </a>
+                <a href="https://memealerts.com/666c6f90034928ee469dba30" target="_blank" class="donate-btn ma">
+                    <div class="btn-icon"><i class="fas fa-images"></i></div>
+                    <div class="btn-text">
+                        <strong>MemeAlerts</strong>
+                        <small>Мем на стрим</small>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="direct-support">
+                <div class="support-layout">
+                    
+
+                    <!-- CENTER: TOP DONORS LIST -->
+                    <div class="donors-center-panel">
+                        <div class="donors-tabs">
+                            <button class="d-tab active" data-tab="all_time" title="За всё время"><i class="fas fa-infinity"></i></button>
+                            <button class="d-tab" data-tab="year" title="За год">1Г</button>
+                            <button class="d-tab" data-tab="month" title="За месяц">1М</button>
+                            <button id="stream-tab-btn" class="d-tab stream-tab" data-tab="stream" title="Текущий стрим" style="display: none;">
+                                <i class="fas fa-signal"></i>
+                            </button>
+                        </div>
+                        <div class="donors-header">
+                            <span id="donors-title">ТОП ДОНАТЕРЫ</span>
+                        </div>
+                        <div id="donors-list-container" class="donors-scroll-area">
+                            <div class="loader-wrap">
+                                <p class="loader-text" style="font-size:0.7rem">ЗАГРУЗКА...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meme-card">
+                        <img src="assets/avatar.png" alt="Avatar" class="pepe-img">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INFO & RULES -->
+        <div class="two-columns">
+            <section class="content-card tilt-effect">
+                <h2 class="section-title">Обо мне</h2>
+                <div class="about-text">
+                    <p>👋 Привет, я RONEER_!</p>
+                    <p>Я обожаю стримить игры! Основной фокус — это FPS (от шутеров заряжаюсь больше всего), но также стримлю и другие игры, если они интересны мне и вам.</p>
+                    <p>🔥 Задавайте вопросы, предлагайте игры или просто заходите поболтать. Буду рад каждому!</p>
+                </div>
+            </section>
+
+            <section class="content-card tilt-effect">
+                <h2 class="section-title">Правила чата</h2>
+                <ul class="rules-list">
+                    <li><i class="fas fa-check"></i> Уважай других участников чата</li>
+                    <li><i class="fas fa-times"></i> Не прибегай к оскорблениям по расовой принадлежности, меньшинствам, вкусам</li>
+                    <li><i class="fas fa-times"></i> Запрещено обсуждение политики и религии</li>
+                    <li><i class="fas fa-times"></i> НЕ ПРОВОЦИРУЙ стримера и модераторов</li>
+                    <li><i class="fas fa-times"></i> Запрещены реклама/пиар</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Советы давать крайне опасно, если их НЕ ПРОСЯТ</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- GAMES LIBRARY -->
+        <section class="content-card">
+            <h2 class="section-title">Библиотека Клипов</h2>
+            <div id="games-container" class="games-grid">
+                <div class="loader-wrap">
+                    <p class="loader-text">СКАНИРОВАНИЕ АРХИВА...</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="credits">
+            <span>Made with <i class="fas fa-heart heart-beat"></i> by</span>
+            <a href="https://t.me/torgasik" target="_blank" class="dev-link">
+                <span class="dev-nick">Torgovets</span>
+                <img src="assets/dev-icon.png" alt="Torgovets" class="dev-pic">
+            </a>
+        </div>
+    </footer>
+
+    <!-- MODALS & OVERLAYS (Оставил базовые) -->
+    <div id="toast-notification" class="toast">Скопировано в буфер!</div>
+
+
+
+    <!-- GAME GALLERY MODAL -->
+    <div id="game-gallery-modal" class="game-modal-overlay">
+        <div class="game-modal-content">
+            <div class="gm-header">
+                <span id="gm-game-title" class="gm-title">GAME NAME</span>
+                <button id="gm-close-btn" class="gm-close">&times;</button>
+            </div>
+            <div id="gm-clips-grid" class="gm-body"></div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
