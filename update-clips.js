@@ -1,11 +1,9 @@
 const fs = require('fs');
 const https = require('https');
 
-// === НАСТРОЙКИ ===
-const CHANNEL_NAME = 'roneer_'; // Было daymonmontage
+const CHANNEL_NAME = 'roneer_';
 const CLIPS_COUNT = 30;
 const OUTPUT_FILE = 'assets/clips.json';
-// =================
 
 const CLIENT_ID = process.env.TWITCH_CLIENT_ID;
 const CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;

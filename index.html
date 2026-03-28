@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RONEER_ | Streamer Hub</title>
-    
+
     <link rel="icon" href="assets/favicon.png" type="image/png">
     <meta name="description" content="Официальный хаб стримера RONEER_. Уютно и по-доброму 😉">
-    <meta name="theme-color" content="#ffc500"> <!-- Желтый цвет Ронира -->
+    <meta name="theme-color" content="#ffc500">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -18,13 +18,13 @@
 </head>
 <body>
 
-    <!-- СЛОИ ФОНА -->
+
     <div class="bg-watermark">RONEER_</div>
     <div class="bg-scanlines"></div>
     <canvas id="particle-canvas"></canvas>
     <div class="ambient-glow"></div>
 
-    <!-- HUD CONTROLS -->
+
     <div class="hud-controls">
         <div id="music-toggle" class="hud-btn muted" title="Music On/Off">
             <i class="fas fa-music"></i> <span>OST</span>
@@ -34,12 +34,12 @@
         </div>
     </div>
 
-    <!-- AUTH CONTROL -->
+
     <div id="auth-wrapper" class="auth-container-fixed">
         <button id="login-btn" class="auth-btn discord-login not-logged-in">
             <i class="fab fa-discord"></i> <span>Войти</span>
         </button>
-        
+
         <div id="user-profile" class="user-profile-fixed" style="display: none;">
             <div class="user-info-box">
                 <img id="user-avatar" src="" alt="User">
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <!-- PRELOADER -->
+
     <div id="preloader">
         <div class="preloader-bg-scan"></div>
         <div class="preloader-content">
@@ -71,11 +71,11 @@
 
 
     <main class="main-container">
-        
-        <!-- HERO HEADER -->
+
+
         <header class="hero-header">
 
-            <!-- Пепе торчит сверху над карточкой -->
+
             <div class="hero-avatar-wrap">
                 <div class="hero-avatar-glow"></div>
                 <div class="avatar-container">
@@ -87,17 +87,17 @@
                 </div>
             </div>
 
-            <!-- Стеклянная карточка инфо -->
+
             <div class="hero-card">
                 <div class="hero-card-accent"></div>
                 <h1 class="premium-title">RONEER_</h1>
-                <p class="status-quote">«Зашёл?» Ну теперь придётся остаться... 😉</p>
+                <p class="status-quote">«Зашёл?» Ну теперь придётся остаться...</p>
 
                 <div class="hero-divider"></div>
 
                 <div class="hero-badges">
                     <span class="hero-badge location-badge">
-                        <i class="fas fa-map-marker-alt"></i> Россия
+                        <i class="fas fa-map-marker-alt"></i> Россия, Тульская обл.
                     </span>
                     <span id="stream-status" class="hero-badge stream-check">
                         <i class="fas fa-circle"></i>
@@ -108,7 +108,7 @@
 
         </header>
 
-        <!-- TWITCH EMBED -->
+
         <div id="live-box" class="twitch-wrapper" style="display: none;">
             <div class="live-indicator">
                 <i class="fas fa-satellite-dish"></i> В ЭФИРЕ
@@ -116,7 +116,7 @@
             <div id="twitch-embed"></div>
         </div>
 
-        <!-- SOCIAL LINKS -->
+
         <section class="content-card tilt-effect">
             <h2 class="section-title">Где меня найти</h2>
             <nav class="social-links">
@@ -135,13 +135,22 @@
                 <a href="https://instagram.com/rone.er_/" target="_blank" class="s-btn insta">
                     <i class="fab fa-instagram"></i> <span>Instagram</span>
                 </a>
+
+
+                <a href="https://discord.gg/BTNGceK6zu" target="_blank" class="s-btn discord">
+                    <i class="fab fa-discord"></i> <span>Discord</span>
+                </a>
+                <a href="https://steamcommunity.com/profiles/76561198868227564/" target="_blank" class="s-btn steam">
+                    <i class="fab fa-steam"></i> <span>Steam</span>
+                </a>
+
             </nav>
         </section>
 
-        <!-- SUPPORT & DONATIONS -->
+
         <section class="content-card tilt-effect">
             <h2 class="section-title">Пенсионный фонд</h2>
-            
+
             <div class="alert-buttons">
                 <a href="https://www.donationalerts.com/r/ronner_" target="_blank" class="donate-btn da">
                     <div class="btn-icon"><i class="fas fa-donate"></i></div>
@@ -158,12 +167,12 @@
                     </div>
                 </a>
             </div>
-            
+
             <div class="direct-support">
                 <div class="support-layout">
-                    
 
-                    <!-- CENTER: TOP DONORS LIST -->
+
+
                     <div class="donors-center-panel">
                         <div class="donors-tabs">
                             <button class="d-tab active" data-tab="all_time" title="За всё время"><i class="fas fa-infinity"></i></button>
@@ -185,37 +194,95 @@
 
                     <div class="meme-card">
                         <img src="assets/avatar.png" alt="Avatar" class="pepe-img">
+
+
+                        <div class="steam-float-wrapper">
+                            <a href="https://steamcommunity.com/tradeoffer/new/?partner=907961836&token=ceRD9HQp" target="_blank" class="steam-float-btn">
+                                <div class="steam-icon"><i class="fab fa-steam"></i></div>
+                                <div class="steam-text">
+                                    <strong>Steam Trade</strong>
+                                    <small>Дайте нож :)</small>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- INFO & RULES -->
-        <div class="two-columns">
-            <section class="content-card tilt-effect">
-                <h2 class="section-title">Обо мне</h2>
-                <div class="about-text">
-                    <p>👋 Привет, я RONEER_!</p>
-                    <p>Я обожаю стримить игры! Основной фокус — это FPS (от шутеров заряжаюсь больше всего), но также стримлю и другие игры, если они интересны мне и вам.</p>
-                    <p>🔥 Задавайте вопросы, предлагайте игры или просто заходите поболтать. Буду рад каждому!</p>
+
+        <div class="two-columns" style="margin-bottom: 2rem;">
+
+
+            <section class="content-card tilt-effect collapsible-card">
+                <div class="collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
+                    <h2 class="section-title" style="margin-bottom: 0;">Обо мне</h2>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="collapse-wrapper">
+                    <div class="collapse-inner">
+                        <div class="about-text" style="margin-top: 2rem;">
+                            <p>👋 Привет, я RONEER_!</p>
+                            <p>Я обожаю стримить игры! Основной фокус — это FPS (от шутеров заряжаюсь больше всего), но также стримлю и другие игры, если они интересны мне и вам.</p>
+                            <p>🔥 Задавайте вопросы, предлагайте игры или просто заходите поболтать. Буду рад каждому!</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section class="content-card tilt-effect">
-                <h2 class="section-title">Правила чата</h2>
-                <ul class="rules-list">
-                    <li><i class="fas fa-check"></i> Уважай других участников чата</li>
-                    <li><i class="fas fa-times"></i> Не прибегай к оскорблениям по расовой принадлежности, меньшинствам, вкусам</li>
-                    <li><i class="fas fa-times"></i> Запрещено обсуждение политики и религии</li>
-                    <li><i class="fas fa-times"></i> НЕ ПРОВОЦИРУЙ стримера и модераторов</li>
-                    <li><i class="fas fa-times"></i> Запрещены реклама/пиар</li>
-                    <li><i class="fas fa-exclamation-triangle"></i> Советы давать крайне опасно, если их НЕ ПРОСЯТ</li>
-                </ul>
+
+            <section class="content-card tilt-effect collapsible-card">
+                <div class="collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
+                    <h2 class="section-title" style="margin-bottom: 0;">Правила чата</h2>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="collapse-wrapper">
+                    <div class="collapse-inner">
+                        <ul class="rules-list" style="margin-top: 2rem;">
+                            <li><i class="fas fa-check"></i> Уважай других участников чата</li>
+                            <li><i class="fas fa-times"></i> Не прибегай к оскорблениям по расовой принадлежности, меньшинствам, вкусам</li>
+                            <li><i class="fas fa-times"></i> Запрещено обсуждение политики и религии</li>
+                            <li><i class="fas fa-times"></i> НЕ ПРОВОЦИРУЙ стримера и модераторов</li>
+                            <li><i class="fas fa-times"></i> Запрещены реклама/пиар</li>
+                            <li><i class="fas fa-exclamation-triangle"></i> Советы давать крайне опасно, если их НЕ ПРОСЯТ</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </div>
 
-        <!-- GAMES LIBRARY -->
+
+        <section class="content-card tilt-effect collapsible-card" style="margin-bottom: 2rem;">
+            <div class="collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <h2 class="section-title" style="margin-bottom: 0;">Setup (Железо)</h2>
+                <div class="toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+
+            <div class="collapse-wrapper">
+                <div class="collapse-inner">
+                    <ul class="specs-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px 40px; margin-top: 2rem;">
+                        <li><span class="spec-label">CPU</span> <span class="spec-val">Intel Core i7-12700KF</span></li>
+                        <li><span class="spec-label">GPU</span> <span class="spec-val highlight">RTX 3070 Ti 8 GB</span></li>
+                        <li><span class="spec-label">RAM</span> <span class="spec-val">XPG SPECTRIX 32GB</span></li>
+                        <li><span class="spec-label">MOBO</span> <span class="spec-val">MSI PRO Z690-A DDR4</span></li>
+                        <li><span class="spec-label">PSU</span> <span class="spec-val">DEEPCOOL 850W</span></li>
+                        <li><span class="spec-label">SSD</span> <span class="spec-val">1TB M.2 Kingston KC2500</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+
         <section class="content-card">
             <h2 class="section-title">Библиотека Клипов</h2>
             <div id="games-container" class="games-grid">
@@ -237,12 +304,12 @@
         </div>
     </footer>
 
-    <!-- MODALS & OVERLAYS (Оставил базовые) -->
+
     <div id="toast-notification" class="toast">Скопировано в буфер!</div>
 
 
 
-    <!-- GAME GALLERY MODAL -->
+
     <div id="game-gallery-modal" class="game-modal-overlay">
         <div class="game-modal-content">
             <div class="gm-header">
