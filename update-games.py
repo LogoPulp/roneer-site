@@ -7,8 +7,8 @@ CHANNEL_NAME = 'roneer_'
 OUTPUT_FILE = 'assets/games.json'
 CLIPS_TO_ANALYZE = 10000
 
-CLIENT_ID = 'bfjbspz6awuwz8jxc0oqkktf4zy7is'
-CLIENT_SECRET = '7u3xucieeuu1d8i9ju8v3s0o46vsq2'
+CLIENT_ID = os.environ.get('TWITCH_CLIENT_ID')
+CLIENT_SECRET = os.environ.get('TWITCH_CLIENT_SECRET')
 
 def get_access_token():
     url = 'https://id.twitch.tv/oauth2/token'
