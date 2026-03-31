@@ -21,6 +21,7 @@
       "type": "normal"
     }
   ],
+  "stream": [],
   "month": [],
   "year": [
     {
@@ -33,6 +34,5 @@
       "amount": "450 RUB",
       "type": "normal"
     }
-  ],
-  "stream": []
+  ]
 }
