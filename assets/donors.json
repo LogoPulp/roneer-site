@@ -1,4 +1,5 @@
 {
+  "month": [],
   "stream": [],
   "all_time": [
     {
@@ -33,6 +34,5 @@
       "amount": "450 RUB",
       "type": "normal"
     }
-  ],
-  "month": []
+  ]
 }
