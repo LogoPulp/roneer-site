@@ -99,15 +99,23 @@
 @media (max-width: 950px) {
     .meme-card {
         width: 100%;
-        height: auto;
         max-width: 280px;
         margin: 0 auto;
-    }
-    .meme-card {
         height: 250px;
     }
     .steam-float-wrapper {
         right: -10px;
-        top: -20px;
+        top: auto;
+        bottom: 15px;
+    }
+    .steam-float-btn {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    .steam-icon {
+        font-size: 1.4rem;
+    }
+    .steam-text strong {
+        font-size: 0.85rem;
     }
 }
