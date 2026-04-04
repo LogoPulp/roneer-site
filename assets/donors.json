@@ -21,6 +21,7 @@
       "type": "normal"
     }
   ],
+  "month": [],
   "year": [
     {
       "name": "Олаф",
@@ -33,6 +34,5 @@
       "type": "normal"
     }
   ],
-  "stream": [],
-  "month": []
+  "stream": []
 }
