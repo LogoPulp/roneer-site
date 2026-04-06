@@ -1,5 +1,4 @@
 {
-  "month": [],
   "stream": [],
   "all_time": [
     {
@@ -23,6 +22,7 @@
       "type": "normal"
     }
   ],
+  "month": [],
   "year": [
     {
       "name": "Олаф",
