@@ -1,5 +1,5 @@
 {
-  "month": [],
+  "stream": [],
   "year": [
     {
       "name": "Олаф",
@@ -34,5 +34,5 @@
       "type": "normal"
     }
   ],
-  "stream": []
+  "month": []
 }
