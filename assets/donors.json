@@ -1,4 +1,16 @@
 {
+  "year": [
+    {
+      "name": "Олаф",
+      "amount": "500 RUB",
+      "type": "normal"
+    },
+    {
+      "name": "Fl1mon",
+      "amount": "450 RUB",
+      "type": "normal"
+    }
+  ],
   "all_time": [
     {
       "name": "♡ твоя милфа ♡",
@@ -22,17 +34,5 @@
     }
   ],
   "stream": [],
-  "month": [],
-  "year": [
-    {
-      "name": "Олаф",
-      "amount": "500 RUB",
-      "type": "normal"
-    },
-    {
-      "name": "Fl1mon",
-      "amount": "450 RUB",
-      "type": "normal"
-    }
-  ]
+  "month": []
 }
