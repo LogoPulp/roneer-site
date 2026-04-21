@@ -294,7 +294,7 @@ function setupEasterEgg() {
             activeSpecialSound.currentTime = 0;
             activeSpecialSound = null;
         }
-        avatar.src = 'assets/pepe.png'; 
+        avatar.src = 'assets/pepe.webp'; 
 
         currentClicks++;
         updateClickUI();
@@ -367,25 +367,41 @@ function initGoldParticles() {
         reset() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
-            this.opacity = Math.random() * 0.5;
+            this.size = Math.random() * 4 + 2; // Сделали чуть крупнее
+            this.speedX = (Math.random() - 0.5) * 0.8;
+            this.speedY = (Math.random() - 0.5) * 0.8;
+            this.opacity = Math.random() * 0.4 + 0.1;
+            // 50% шанс быть красным, 50% желтым
+            this.color = Math.random() > 0.5 ? '255, 197, 0' : '255, 0, 0'; 
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotSpeed = (Math.random() - 0.5) * 0.02; // Скорость вращения
         }
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+            this.rotation += this.rotSpeed;
+            if (this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
                 this.reset();
             }
         }
         draw() {
-            ctx.fillStyle = `rgba(255, 197, 0, ${this.opacity})`;
-            ctx.shadowBlur = 5;
-            ctx.shadowColor = '#ffc500';
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            
+            ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = `rgb(${this.color})`;
+            
+            // Рисуем треугольник вместо круга
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.moveTo(0, -this.size);
+            ctx.lineTo(this.size, this.size);
+            ctx.lineTo(-this.size, this.size);
+            ctx.closePath();
             ctx.fill();
+            
+            ctx.restore();
         }
     }
 
@@ -393,12 +409,20 @@ function initGoldParticles() {
         particles.push(new Particle());
     }
 
+    let isCanvasVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+        isCanvasVisible = entries[0].isIntersecting;
+    });
+    observer.observe(canvas);
+
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
+        if (isCanvasVisible) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+        }
         requestAnimationFrame(animate);
     }
     animate();

@@ -11,15 +11,29 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/parts/1-base.css">
+    <link rel="stylesheet" href="css/parts/2-layout.css">
+    <link rel="stylesheet" href="css/parts/3-components.css">
+    <link rel="stylesheet" href="css/parts/4-modules.css">
+    <link rel="stylesheet" href="css/parts/5-cards.css">
+    <link rel="stylesheet" href="css/parts/6-achievements-ui.css">
+    <link rel="stylesheet" href="css/parts/7-donors.css">
+    <link rel="stylesheet" href="css/parts/8-games.css">
 
-    <script src="https://embed.twitch.tv/embed/v1.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
 
-    <div class="bg-watermark">RONEER_</div>
+    <!-- Убрали bg-watermark, добавили падающие звезды -->
+    <div class="shooting-stars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="bg-geometric"></div>
     <div class="bg-scanlines"></div>
     <canvas id="particle-canvas"></canvas>
     <div class="ambient-glow"></div>

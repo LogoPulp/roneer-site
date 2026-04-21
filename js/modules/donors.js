@@ -60,7 +60,8 @@ export async function initDonorsBackground() {
     });
 
     try {
-        const response = await fetch('assets/donors.json?t=' + Date.now());
+        const cacheTime = Math.floor(Date.now() / 300000); 
+        const response = await fetch(`assets/donors.json?t=${cacheTime}`);
         if (response.ok) {
             const rawData = await response.json();
 

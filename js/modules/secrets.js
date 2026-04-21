@@ -3,7 +3,7 @@ import { triggerAchievement } from './achievements.js';
 
 const SECRET_CODES = {
     'roneer':   { type: 'video', src: 'assets/cat-piano.mp4' },
-    'pepe':  { type: 'image-peek', src: 'assets/monica.png' },
+    'pepe':  { type: 'image-peek', src: 'assets/monica.webp' },
     'fps': { type: 'barrel-roll' }
 };
 
@@ -62,7 +62,7 @@ function triggerScreamer() {
         overlay.style.alignItems = 'center';
 
         const img = document.createElement('img');
-        img.src = 'assets/angry-pepe.png';
+        img.src = 'assets/angry-pepe.webp';
         img.className = 'screamer-img';
         img.style.transform = 'scale(0.1)';
         img.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';

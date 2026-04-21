@@ -9,7 +9,8 @@ export async function initClipsGallery() {
     if (!container) return;
 
     try {
-        const res = await fetch('assets/games.json?t=' + Date.now());
+        const cacheTime = Math.floor(Date.now() / 300000);
+        const res = await fetch(`assets/games.json?t=${cacheTime}`);
         if (!res.ok) throw new Error("Games JSON not found");
         GAMES_DATA = await res.json();
     } catch (err) {
@@ -197,7 +198,7 @@ function openGameModal(game) {
                 </div>
                 <div class="pl-info-mini">
                     <div class="pl-title-mini" title="${cTitle}">${cTitle}</div>
-                    <div class="pl-meta-mini">by DaymonMontage</div>
+                    <div class="pl-meta-mini">by RONEER_</div>
                 </div>
             `;
 
@@ -275,7 +276,16 @@ export async function checkTwitchStatus() {
             
             if(liveBox) {
                 liveBox.style.display = 'block';
-                loadTwitchEmbed();
+                
+                // Динамически грузим скрипт Твича только сейчас
+                if (!window.Twitch) {
+                    const script = document.createElement('script');
+                    script.src = "https://embed.twitch.tv/embed/v1.js";
+                    script.onload = () => loadTwitchEmbed();
+                    document.body.appendChild(script);
+                } else {
+                    loadTwitchEmbed();
+                }
             }
 
             if(streamTab) {

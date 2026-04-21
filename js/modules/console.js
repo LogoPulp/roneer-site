@@ -4,7 +4,7 @@ let isConsoleRunning = false;
 const BOOT_SEQUENCE = [
     { type: 'normal', text: 'Initializing RoneerOS v2.0.0...' },
     { type: 'success', text: 'Connection established: Cozy Server' },
-    { type: 'normal', text: 'Loading assets... pepe.png, fps_skills.exe' },
+    { type: 'normal', text: 'Loading assets... pepe.webp, fps_skills.exe' },
     { type: 'warning', text: 'WARNING: High concentration of memes detected' },
     { type: 'normal', text: 'Scanning for viewers...' },
     { type: 'success', text: 'Viewer found: You' },

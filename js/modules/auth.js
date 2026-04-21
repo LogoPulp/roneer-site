@@ -65,7 +65,7 @@ async function handleUserIn(user, token) {
     if (userProfile) {
         userProfile.style.display = 'flex';
         userName.textContent = user.user_metadata.full_name || user.email;
-        userAvatar.src = user.user_metadata.avatar_url || 'assets/avatar.png';
+        userAvatar.src = user.user_metadata.avatar_url || 'assets/avatar.webp';
     }
 
     await syncAchievements();
