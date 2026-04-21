@@ -7,7 +7,7 @@
       {
         "id": "PuzzledProudCroquetteRickroll-t-cu9rdAAMwIbSRI",
         "title": "догонялки",
-        "views": 18,
+        "views": 20,
         "thumb": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/PuzzledProudCroquetteRickroll-t-cu9rdAAMwIbSRI/31fa8779-aded-4891-863d-cf6b156fd31c/preview-480x272.jpg",
         "url": "https://www.twitch.tv/roneer_/clip/PuzzledProudCroquetteRickroll-t-cu9rdAAMwIbSRI"
       },
@@ -50,6 +50,21 @@
     "art": "https://static-cdn.jtvnw.net/ttv-boxart/464339927-285x380.jpg"
   },
   {
+    "id": "1517377137",
+    "name": "RV There Yet?",
+    "count": 1,
+    "clips": [
+      {
+        "id": "ExquisitePlumpShrewCharlietheUnicorn-yr4v9B1vsmLfqqTw",
+        "title": "жеское доминирование",
+        "views": 10,
+        "thumb": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/ExquisitePlumpShrewCharlietheUnicorn-yr4v9B1vsmLfqqTw/a6b989e7-f373-4cbb-b790-4dac2c7ef22a/preview-480x272.jpg",
+        "url": "https://www.twitch.tv/roneer_/clip/ExquisitePlumpShrewCharlietheUnicorn-yr4v9B1vsmLfqqTw"
+      }
+    ],
+    "art": "https://static-cdn.jtvnw.net/ttv-boxart/1517377137_IGDB-285x380.jpg"
+  },
+  {
     "id": "500188",
     "name": "Hunt: Showdown 1896",
     "count": 1,
@@ -63,20 +78,5 @@
       }
     ],
     "art": "https://static-cdn.jtvnw.net/ttv-boxart/500188_IGDB-285x380.jpg"
-  },
-  {
-    "id": "1517377137",
-    "name": "RV There Yet?",
-    "count": 1,
-    "clips": [
-      {
-        "id": "ExquisitePlumpShrewCharlietheUnicorn-yr4v9B1vsmLfqqTw",
-        "title": "жеское доминирование",
-        "views": 9,
-        "thumb": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/ExquisitePlumpShrewCharlietheUnicorn-yr4v9B1vsmLfqqTw/a6b989e7-f373-4cbb-b790-4dac2c7ef22a/preview-480x272.jpg",
-        "url": "https://www.twitch.tv/roneer_/clip/ExquisitePlumpShrewCharlietheUnicorn-yr4v9B1vsmLfqqTw"
-      }
-    ],
-    "art": "https://static-cdn.jtvnw.net/ttv-boxart/1517377137_IGDB-285x380.jpg"
   }
 ]
