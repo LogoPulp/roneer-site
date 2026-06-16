@@ -1,5 +1,4 @@
 {
-  "month": [],
   "year": [
     {
       "name": "Олаф",
@@ -12,10 +11,12 @@
       "type": "normal"
     }
   ],
+  "stream": [],
+  "month": [],
   "all_time": [
     {
       "name": "♡ твоя милфа ♡",
-      "amount": "1 678,34 RUB",
+      "amount": "1 678,73 RUB",
       "type": "gold"
     },
     {
@@ -33,6 +34,5 @@
       "amount": "42 RUB",
       "type": "normal"
     }
-  ],
-  "stream": []
+  ]
 }
