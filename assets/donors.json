@@ -1,9 +1,22 @@
 {
   "month": [],
+  "stream": [],
+  "year": [
+    {
+      "name": "Олаф",
+      "amount": "500 RUB",
+      "type": "normal"
+    },
+    {
+      "name": "Fl1mon",
+      "amount": "450 RUB",
+      "type": "normal"
+    }
+  ],
   "all_time": [
     {
       "name": "♡ твоя милфа ♡",
-      "amount": "1 704,97 RUB",
+      "amount": "1 697,11 RUB",
       "type": "gold"
     },
     {
@@ -19,19 +32,6 @@
     {
       "name": "Ананист",
       "amount": "42 RUB",
-      "type": "normal"
-    }
-  ],
-  "stream": [],
-  "year": [
-    {
-      "name": "Олаф",
-      "amount": "500 RUB",
-      "type": "normal"
-    },
-    {
-      "name": "Fl1mon",
-      "amount": "450 RUB",
       "type": "normal"
     }
   ]
