@@ -21,8 +21,6 @@
       "type": "normal"
     }
   ],
-  "stream": [],
-  "month": [],
   "year": [
     {
       "name": "Олаф",
@@ -34,5 +32,7 @@
       "amount": "450 RUB",
       "type": "normal"
     }
-  ]
+  ],
+  "stream": [],
+  "month": []
 }
