@@ -1,16 +1,4 @@
 {
-  "year": [
-    {
-      "name": "Олаф",
-      "amount": "500 RUB",
-      "type": "normal"
-    },
-    {
-      "name": "Fl1mon",
-      "amount": "450 RUB",
-      "type": "normal"
-    }
-  ],
   "month": [],
   "all_time": [
     {
@@ -34,5 +22,17 @@
       "type": "normal"
     }
   ],
-  "stream": []
+  "stream": [],
+  "year": [
+    {
+      "name": "Олаф",
+      "amount": "500 RUB",
+      "type": "normal"
+    },
+    {
+      "name": "Fl1mon",
+      "amount": "450 RUB",
+      "type": "normal"
+    }
+  ]
 }
